@@ -39,4 +39,12 @@ public class AuthService {
                 .filter(u -> Objects.equals(u.getPassword(), password))
                 .isPresent();
     }
+
+    public String login(String usernameOrEmail, String password) {
+        boolean ok = verifyCredentials(usernameOrEmail, password);
+        if (ok) {
+            return "Autenticación satisfactoria";
+        }
+        throw new IllegalArgumentException("Credenciales incorrectas");
+    }
 }
